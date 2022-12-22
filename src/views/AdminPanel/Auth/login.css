@@ -1,0 +1,52 @@
+
+body {  
+    /* background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("backgroundimage.jpg"); */
+    /* background: url("backgroundimage.jpg"); */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: 'Muli', sans-serif;  
+    }  
+    
+    h1 {  
+      color: rgb(32, 29, 29);  
+      padding-bottom: 2rem;  
+      font-weight: bold;  
+    }  
+    a {  
+      color: #333;  
+    }  
+    a:hover {  
+      color: #E8D426;  
+      text-decoration: none;  
+    }  
+    .form-control:focus {  
+        color: #000;  
+        background-color: #fff;  
+        border: 2px solid #E8D426;  
+        outline: 0;  
+        box-shadow: none;  
+    }  
+    /* .btn {  
+      background: #5ab5ed;  
+      border: #E8D426;  
+    }   */
+    /* .btn:hover {  
+      background: #131313;  
+      border: #E8D426;  
+    }   */
+    .row {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      margin-right: -100px;
+      margin-left: -100px;
+      
+    }
+    .card-body
+    {
+      background: rgb(248,249,250,0.5);
+      left: -200px;
+      top: 120px;
+    }
