@@ -1,22 +1,16 @@
-import { useEffect, useState } from 'react';
-import logo from "../assets/logo/webscript.png";
-import user from "../assets/user.jpg"
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListMenu, {ListMenus} from './ListMenu'
 import { useDispatch } from 'react-redux';
 import { useLogoutUserMutation } from '../services/UserAuthApi';
 import { getToken, removeToken } from '../services/LocalStorageService';
 import { unsetUserToken } from '../features/authSlice';
-import { BASE_URL } from '../../../App';
-
 
 
 const SideBar = (props) => {
   const [inactive, setInactive] = useState(false);
-
+  const [ logoutUser ] = useLogoutUserMutation();
   const navigate = useNavigate();
-  const [logoutUser] = useLogoutUserMutation()
   const dispatch = useDispatch()
   const token = getToken();
   // console.log(token);

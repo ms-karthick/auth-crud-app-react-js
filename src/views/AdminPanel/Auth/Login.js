@@ -61,7 +61,7 @@ const Login = ()=> {
        const res = await loginUser (data)
           console.log(res);
           if(res.data && res.data.status === "success"){
-           storeToken(res.data.token);
+           storeToken(res.data.authorisation.token);
             navigate('/Dashboard');
           if (res.error && res.error.data.status === "failed") {
             setError({ status: true, msg: res.error.data.message, type: 'error' })

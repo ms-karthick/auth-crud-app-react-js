@@ -46,7 +46,7 @@ useEffect(() => {
                                 <td>{item.name}</td>
                                 {/* <td>{item.created_at}</td> */}
                                 {/* <td>{item.updated_at}</td> */}
-                                <img rounded thumbnail src={`http://127.0.0.1:8000/storage/articles/image/${item.image}`} width={200} height={200} />
+                                <img rounded thumbnail src={`http://127.0.0.1:8000/storage/image/${item.image}`} width={200} height={200} />
 
                             </tr>
                         )

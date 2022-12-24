@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../../App';
    
-const CreateCategory = ()=>{
+const AddEmployee = ()=>{
   const navigate = useNavigate();
-  const [file, setFile] = useState();
+  const [files, setFiles] = useState([]);
   const [name, setName] = useState();
   const [error, setError] = useState({
       status: false,
@@ -15,20 +15,23 @@ const CreateCategory = ()=>{
   const [file_preview, setFile_preview] = useState();
 
   const handleChangeFile = (event) => {
-    // console.log(event.target.files);
-    setFile(event.target.files[0]);
+    let file = [];
+    for (let i=0; i< event.target.files.length; i++){
+      file.push(URL.createObjectURL(event.target.files[i]));
+    }
+    setFiles(event.target.files);
 }
 
      const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(name);
-        console.log(file);
+        console.log(files);
 
-        if (name && file !== null) {
+        if (name && files !== null) {
             var formdata = new FormData();
-            formdata.append("name", postTitle);
-            formdata.append("image", file);
-            formdata.append("img_url", file.name);
+            formdata.append("name", name);
+            formdata.append("image", files);
+            formdata.append("img_url", files.name);
 
             var requestOptions = {
                 method: 'POST',
@@ -54,30 +57,21 @@ const CreateCategory = ()=>{
     }
 
     useEffect(() => {
-      loadDatas();
-      if(!file){
+      if(!files){
           setFile_preview(undefined)
           return
       }
-      const file_url = URL.createObjectURL(file);
-      setFile_preview(file_url);
-      return() => URL.revokeObjectURL(file)
+      setFile_preview(files);
+      return() => URL.revokeObjectURL(files)
   },
-  [file]
+  [files]
   );
     return (
         <div className="">
         <div className="row">
           <div className="col-md-12">
             <div className="card">
-              <div className="card-header">
-                {/* <h4>
-                  Add employeeData
-                  <Link to="/Employee" className="btn btn-primary btn-sm float-end">
-                    Back
-                  </Link>
-                </h4> */}
-              </div>
+
               <div className="col-md-6">
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
@@ -95,11 +89,16 @@ const CreateCategory = ()=>{
                       <label>Image</label>
                       <input
                         type="file"
-                        name="image[]"
+                        multiple
+                        accept="image/*"
                         onChange={handleChangeFile}
                         className="form-control"
                       />
-                    <img rounded thumbnail src={file_preview} width={400} height={300} />
+                        {file_preview.map((img, i) => {
+                          return(
+                            <img rounded thumbnail src={img} alt={"image-" +i} key={i} width={400} height={300} />
+                          )
+                        })}
 
                     </div>
                     <button type="submit" className="btn btn-info btn-block">
@@ -115,4 +114,4 @@ const CreateCategory = ()=>{
     );
 }
 
-export default CreateCategory;
+export default AddEmployee;

@@ -28,23 +28,23 @@ export const UserAuthApi = createApi({
               }
             }
           }),
-          logoutUser: builder.mutation({
+          userList: builder.mutation({
             query: ({ token }) => {
               return {
-                url: 'logout',
-                method: 'POST',
-                body: {},
+                url: 'user_list',
+                method: 'GET',
                 headers: {
+                  'Content-type': 'application/json',
                   'authorization': `Bearer ${token}`,
                 }
               }
             }
           }),
-          getLoggedUser: builder.query({
-            query: (token) => {
+          logoutUser: builder.mutation({
+            query: ({token}) => {
               return {
-                url: 'loggeduser',
-                method: 'GET',
+                url: 'logout',
+                method: 'POST',
                 headers: {
                   'authorization': `Bearer ${token}`,
                 }
@@ -55,4 +55,4 @@ export const UserAuthApi = createApi({
     }),
 })
 
-export const { useRegisterUserMutation, useLoginUserMutation, useLogoutUserMutation,useGetLoggedUserQuery, useChangeUserPasswordMutation,useSendPasswordResetEmailMutation,useResetPasswordMutation } = UserAuthApi
+export const { useRegisterUserMutation, useLoginUserMutation, useUserListMutation,useLogoutUserMutation } = UserAuthApi

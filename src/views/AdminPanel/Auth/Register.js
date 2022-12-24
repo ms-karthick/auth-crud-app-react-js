@@ -1,4 +1,6 @@
 import * as React from 'react';
+import  { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -30,18 +32,25 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
+
+  const navigate = useNavigate();
     const [ registerUser ] = useLoginUserMutation();
     const [register, setRegister] = useState({
         name: '',
+        location: '',
         email: '',
         password: '',
     });
-    
+     const [error, setError] = useState({
+      status: false,
+      msg: "",
+      type: ""
+  });
     const handleChange = (e) => {
         setRegister({...register, [e.target.name]: e.target.value});
       }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let data = {name:register.name,email:register.email, password:register.password};
     console.log(data);
@@ -87,7 +96,18 @@ export default function Register() {
                   autoFocus
                 />
               </Grid>
-            
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-location"
+                  name="location"
+                  required
+                  fullWidth
+                  id="location"
+                  onChange={handleChange}
+                  label="Location"
+                  autoFocus
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
