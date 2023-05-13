@@ -20,12 +20,16 @@ function App() {
  return (
 <div className="App">
  <Router>
- <Routes>
+ {/* <Routes>
        <Route exact path ="/register" element= {!token ? <Register />: <Navigate to="/Dashboard" />} />
       <Route exact path ="/login" element= {!token ? <Login />: <Navigate to="/Dashboard" />} />
-</Routes>
+</Routes> */}
 
-{
+<Routes>
+       <Route exact path ="/register" element= { <Register />} />
+      <Route exact path ="/login" element= { <Login />} />
+</Routes>
+{/* {
 token ?
       <SideBar 
           onCollapse={(inactive) => {
@@ -33,11 +37,27 @@ token ?
             setInactive(inactive);
           }}
         />: <></>
-}
+} */}
+
+
+
+      <SideBar 
+          onCollapse={(inactive) => {
+            // console.log(inactive);
+            setInactive(inactive);
+          }}
+        />
+
          <div className={`container ${inactive ? "inactive" : ""}`}>     
-    <Routes>
+    {/* <Routes>
       <Route exact path ="/Dashboard" element= { token ? <Dashboard />: <Navigate to="/login" />} />
       <Route exact path ="/Employee" element = {token ? <ListEmployee />:  <Navigate to="/login" />}  />
+      <Route exact path ="/AddEmployee" element = {<AddEmployee />} /> 
+    </Routes>  */}
+
+<Routes>
+      <Route exact path ="/Dashboard" element= {  <Dashboard /> } />
+      <Route exact path ="/Employee" element = { <ListEmployee /> }  />
       <Route exact path ="/AddEmployee" element = {<AddEmployee />} /> 
     </Routes> 
     </div>
