@@ -8,5 +8,5 @@ const storeToken = (value) => {
   const removeToken = (value) => {
     localStorage.removeItem(value)
   }
-  //new file worked 
+
   export { storeToken, getToken, removeToken }
